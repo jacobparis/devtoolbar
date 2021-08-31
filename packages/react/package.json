@@ -11,7 +11,8 @@
     "verify": "npm run prettier && npm run lint",
     "verify:fix": "yarn prettier:fix && yarn lint:fix",
     "build": "npm i && npx esbuild src/index.tsx --define:process.env.NODE_ENV=\\\"production\\\" --bundle --platform=node --outfile=lib/index.js",
-    "postbuild": "npx tsc --build"
+    "postbuild": "npx tsc --build",
+    "publish": "pnmp publish"
   },
   "publishConfig": {
     "main": "lib/index.js",
