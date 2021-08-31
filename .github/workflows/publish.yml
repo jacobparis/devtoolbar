@@ -21,15 +21,11 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-        with:
-          token: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
-      - run: git config --global user.name 'JacobParis'
-      - run: git config --global user.email 'jacob@jacobpariseau.com'
+
       - name: Set token
         run: npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
 
       - name: Publish to npm
-        run: lerna publish from-package --yes --no-git-reset
-      - run: git push
+        run: lerna publish from-git --yes --no-git-reset
     env:
         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
