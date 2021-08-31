@@ -1,8 +1,8 @@
 {
   "name": "devtoolbar-react",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A toolbar to enhance developer experience directly in your apps",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
     "prettier": "npx prettier --check src/",
     "prettier:fix": "prettier --write src/",
