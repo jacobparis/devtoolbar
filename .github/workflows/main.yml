@@ -29,4 +29,4 @@ jobs:
         uses: znck/pnpm@v0.1.0-alpha.1
         
       - name: Publish to npm
-        run: pnpm publish
+        run: npx pnpm publish
