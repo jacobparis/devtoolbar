@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.21](https://github.com/JacobParis/devtoolbar/compare/devtoolbar-react@1.0.20...devtoolbar-react@1.0.21) (2021-08-31)
+
+
+### Bug Fixes
+
+* Children are not required ([80da12e](https://github.com/JacobParis/devtoolbar/commit/80da12ea872dc989965d37ae9a6fe85d3c0485d0))
+
+
+
+
+
 ## [1.0.20](https://github.com/JacobParis/devtoolbar/compare/devtoolbar-react@1.0.19...devtoolbar-react@1.0.20) (2021-08-31)
 
 
