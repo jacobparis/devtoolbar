@@ -10,6 +10,15 @@ const config = {
   },
 }
 
+function HostItem({host, children}) {
+  return (
+    <li>
+      <a href={host}>{host}</a>
+      {children}
+    </li>
+  )
+}
+
 export function DevToolbar() {
   return (
     <div className="toolbar">
@@ -20,21 +29,21 @@ export function DevToolbar() {
           <p> Production </p>
           <ul>
             {config.hosts.production.map((host) => (
-              <li key={host}> {host} </li>
+              <HostItem key={host} host={host} />
             ))}
           </ul>
 
           <p> Staging </p>
           <ul>
             {config.hosts.staging.map((host) => (
-              <li key={host}> {host} </li>
+              <HostItem key={host} host={host} />
             ))}
           </ul>
 
           <p> Development </p>
           <ul>
             {config.hosts.development.map((host) => (
-              <li key={host}> {host} </li>
+              <HostItem key={host} host={host} />
             ))}
           </ul>
         </div>
