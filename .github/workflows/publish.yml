@@ -31,6 +31,6 @@ jobs:
       - run: git config --global user.name 'Jacob Paris'
       - run: git config --global user.email 'jacob@jacobparis.com'
 
-      - run: lerna version --conventional-commits --create-release github -m "chore(release) increment version" --yes
+      - run: lerna version --conventional-commits -m "chore(release) increment version" --yes
 
       - run: git push
