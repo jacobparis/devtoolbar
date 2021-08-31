@@ -23,8 +23,5 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      - name: GitHub Action for pnpm
-        uses: znck/pnpm@v0.1.0-alpha.1
-        
       - name: Publish to npm
-        run: npx pnpm publish
+        run: lerna publish
