@@ -23,6 +23,9 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
+      - name: Set token
+        run: npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
+        
       - name: Publish to npm
         run: lerna publish from-package --yes
     env:
