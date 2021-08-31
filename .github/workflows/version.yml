@@ -15,5 +15,5 @@ jobs:
           token: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
       - run: git config --global user.name 'Jacob Paris'
       - run: git config --global user.email 'jacob@jacobparis.com'
-      - run: lerna version patch -m "[RELEASE] %s"
+      - run: lerna version patch -m "[RELEASE] %s" --yes
       - run: git push
