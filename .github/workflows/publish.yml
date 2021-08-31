@@ -13,7 +13,6 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   publish:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
@@ -28,17 +27,17 @@ jobs:
 
         # pulls all tags (needed for lerna / semantic release to correctly version)
       - run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
-      
-      - run: lerna version patch -m "[RELEASE]" --yes
+
+      - run: git config --global user.name 'Jacob Paris'
+      - run: git config --global user.email 'jacob@jacobparis.com'
+
+      - run: lerna version patch -m "(chore) increment version" --yes
 
       - name: Set token
         run: npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
 
       - name: Publish to npm
         run: lerna publish from-package --yes --include-merged-tags
-
-      - run: git config --global user.name 'Jacob Paris'
-      - run: git config --global user.email 'jacob@jacobparis.com'
 
       - run: git push
     env:
