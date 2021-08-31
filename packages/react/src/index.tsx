@@ -10,7 +10,7 @@ const config = {
   },
 }
 
-function HostItem({host, children}) {
+function HostItem({key, host, children}) {
   return (
     <li>
       <a href={host}>{host}</a>
