@@ -1,0 +1,32 @@
+{
+  "name": "root",
+  "private": true,
+  "scripts": {
+    "prepublish": "npm run build",
+    "verify": "lerna run verify --stream",
+    "prettier": "lerna run prettier",
+    "build": "lerna run build",
+    "test": "NODE_ENV=development lerna run test --stream"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run prettier",
+      "pre-push": "npm run verify"
+    }
+  },
+  "devDependencies": {
+    "@types/node": "^16.7.8",
+    "@typescript-eslint/eslint-plugin": "^4.30.0",
+    "@typescript-eslint/parser": "^4.30.0",
+    "esbuild": "^0.12.24",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "husky": "^7.0.2",
+    "lerna": "^4.0.0",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.3.2",
+    "typescript": "^4.4.2",
+    "wait-on": "^6.0.0"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "name": "devtoolbar-react",
+  "version": "1.0.0",
+  "description": "A toolbar to enhance developer experience directly in your apps",
+  "main": "index.js",
+  "scripts": {
+    "prettier": "npx prettier --check src/",
+    "prettier:fix": "prettier --write src/",
+    "lint": "npx eslint . --ext .ts,.tsx",
+    "lint:fix": "yarn lint --fix",
+    "verify": "npm run prettier && npm run lint",
+    "verify:fix": "yarn prettier:fix && yarn lint:fix",
+    "build": "npx esbuild src/index.tsx --define:process.env.NODE_ENV=\\\"production\\\" --bundle --platform=node --outfile=lib/index.js",
+    "postbuild": "npx tsc --build"
+  },
+  "publishConfig": {
+    "main": "lib/index.js",
+    "typings": "lib/index.d.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JacobParis/devtoolbar.git"
+  },
+  "author": "Jacob Paris",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JacobParis/devtoolbar/issues"
+  },
+  "homepage": "https://github.com/JacobParis/devtoolbar#readme",
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "eslint-config-react-app": "^6.0.0",
+    "eslint-plugin-flowtype": "^5.9.1",
+    "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.25.1",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "typescript": "^4.4.2"
+  }
+}
