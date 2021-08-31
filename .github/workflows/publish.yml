@@ -32,6 +32,6 @@ jobs:
         run: npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
 
       - name: Publish to npm
-        run: lerna publish from-package --yes --no-git-reset --include-merged-tags
+        run: lerna publish from-package --yes --include-merged-tags
     env:
         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

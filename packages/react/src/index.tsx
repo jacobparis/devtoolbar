@@ -15,7 +15,7 @@ export function DevToolbar() {
     <div className="toolbar">
       <span> Developer Toolbar </span>
       <div>
-        <span> Host: </span>
+        <span> Host </span>
         <div>
           <p> Production </p>
           <ul>
