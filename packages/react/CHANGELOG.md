@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.20](https://github.com/JacobParis/devtoolbar/compare/devtoolbar-react@1.0.19...devtoolbar-react@1.0.20) (2021-08-31)
+
+
+### Bug Fixes
+
+* Add key ([af3b668](https://github.com/JacobParis/devtoolbar/commit/af3b6680b842caf12ca8d4511dcf6d742d8db84f))
+
+
+
+
+
 ## [1.0.19](https://github.com/JacobParis/devtoolbar/compare/devtoolbar-react@1.0.18...devtoolbar-react@1.0.19) (2021-08-31)
 
 **Note:** Version bump only for package devtoolbar-react
