@@ -33,4 +33,12 @@ jobs:
 
       - run: lerna version --conventional-commits -m "chore(release) increment version" --yes
 
+      - name: Set token
+        run: npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
+
+      - name: Publish to npm
+        run: lerna publish from-package --yes --include-merged-tags
+        
       - run: git push
+    env:
+        NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
