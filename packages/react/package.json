@@ -11,7 +11,9 @@
     "verify": "npm run prettier && npm run lint",
     "verify:fix": "yarn prettier:fix && yarn lint:fix",
     "build": "npm i && npx esbuild src/index.tsx --define:process.env.NODE_ENV=\\\"production\\\" --bundle --platform=node --outfile=lib/index.js",
-    "postbuild": "npx tsc --build"
+    "postbuild": "npx tsc --build",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "publishConfig": {
     "main": "lib/index.js",
@@ -29,10 +31,17 @@
   "homepage": "https://github.com/JacobParis/devtoolbar#readme",
   "dependencies": {
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "react-switch": "^6.0.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.15.0",
+    "@storybook/addon-actions": "^6.3.7",
+    "@storybook/addon-essentials": "^6.3.7",
+    "@storybook/addon-links": "^6.3.7",
+    "@storybook/react": "^6.3.7",
     "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.2.2",
     "eslint-config-react-app": "^6.0.0",
     "eslint-plugin-flowtype": "^5.9.1",
     "eslint-plugin-import": "^2.24.2",
