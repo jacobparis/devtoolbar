@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.27](https://github.com/JacobParis/devtoolbar/compare/devtoolbar-react@1.0.26...devtoolbar-react@1.0.27) (2021-09-05)
+
+**Note:** Version bump only for package devtoolbar-react
+
+
+
+
+
 ## [1.0.26](https://github.com/JacobParis/devtoolbar/compare/devtoolbar-react@1.0.25...devtoolbar-react@1.0.26) (2021-09-05)
 
 **Note:** Version bump only for package devtoolbar-react
