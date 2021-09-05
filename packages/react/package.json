@@ -10,7 +10,7 @@
     "lint:fix": "yarn lint --fix",
     "verify": "npm run prettier && npm run lint",
     "verify:fix": "yarn prettier:fix && yarn lint:fix",
-    "build": "npm i && npx esbuild src/index.tsx --define:process.env.NODE_ENV=\\\"production\\\" --bundle --platform=node --outfile=lib/index.js --external:react",
+    "build": "npm i && npx esbuild src/index.tsx --define:process.env.NODE_ENV=\\\"production\\\" --bundle --outfile=lib/index.js --external:react",
     "postbuild": "npx tsc --build",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
