@@ -19,8 +19,17 @@ const Template: ComponentStory<typeof DevToolbar> = (args) => (
   <DevToolbar {...args} />
 )
 
-export const Primary = Template.bind({})
-Primary.args = {
-  primary: true,
+export const Empty = Template.bind({})
+Empty.args = {
+  label: 'DevToolbar',
+}
+
+export const WithHosts = Template.bind({})
+WithHosts.args = {
+  hosts: {
+    production: ['https://www.threeq.app'],
+    staging: ['https://blag.vercel.com'],
+    development: ['http://localhost:3000'],
+  },
   label: 'DevToolbar',
 }
