@@ -34,6 +34,12 @@ type Props = {
 export function DevToolbar({hosts}: Props) {
   const [isOpen, setIsOpen] = React.useState(false)
 
+  if (typeof window === 'undefined') {
+    console.error('Developer Toolbar should not run on the server.')
+
+    return null
+  }
+
   const isLocalhost = window.location.hostname === 'localhost'
 
   const shouldDisplay = isLocalhost
@@ -49,7 +55,7 @@ export function DevToolbar({hosts}: Props) {
               <div>
                 <p className="section_heading"> Production </p>
                 <ul className="section_list">
-                  {hosts.production.map((host, i) => (
+                  {hosts.production.map((host) => (
                     <HostItem key={host} host={host} optional />
                   ))}
                 </ul>
@@ -60,7 +66,7 @@ export function DevToolbar({hosts}: Props) {
               <div>
                 <p className="section_heading"> Staging </p>
                 <ul className="section_list">
-                  {hosts.staging.map((host, i) => (
+                  {hosts.staging.map((host) => (
                     <HostItem key={host} host={host} optional />
                   ))}
                 </ul>
@@ -71,8 +77,8 @@ export function DevToolbar({hosts}: Props) {
               <div>
                 <p className="section_heading"> Development </p>
                 <ul className="section_list">
-                  {hosts.development.map((host, i) => (
-                    <HostItem key={host} host={host} />
+                  {hosts.development.map((host) => (
+                    <HostItem key={host} host={host} optional />
                   ))}
                 </ul>
               </div>
