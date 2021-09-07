@@ -1,5 +1,3 @@
-import './DevToolbar.css'
-
 import * as React from 'react'
 
 import {CrossStorageClient} from 'cross-storage'
@@ -10,6 +8,7 @@ import {
 } from 'react-query'
 // A react component in typescript named HostItem
 import Switch from 'react-switch'
+import {tw} from 'twind'
 
 const queryClient = new QueryClient()
 
@@ -21,11 +20,20 @@ function HostItem({host, setHost, getHost, optional = false}) {
   )
 
   return (
-    <li className={`hostItem ${current ? 'current' : ''}`}>
-      <a href={host}>{host}</a>
+    <li
+      className={tw`list-none px-4 py-2 rounded flex justify-between items-center ${
+        current ? 'bg-yellow-100' : 'hover:bg-gray-100'
+      }`}
+    >
+      <a className={tw`pr-8 text-blue-600 hover:underline`} href={host}>
+        {host}
+      </a>
       {optional ? (
         isLoading ? (
-          <i className="spinner" />
+          <i
+            style={{borderTopColor: '#333'}}
+            className={tw`inline-block animate-spin w-4 h-4 border-4 border-black border-opacity-30 rounded-full `}
+          />
         ) : (
           <Switch
             checked={checked === 'true'}
@@ -117,17 +125,31 @@ function Toolbar({hosts}: Props) {
   const shouldDisplay = isLocalhost || enabledValue === 'true'
   return shouldDisplay ? (
     <QueryClientProvider client={queryClient}>
-      <div className="toolbar">
-        <div> Developer Toolbar </div>
+      <div
+        className={tw`font-sans px-4 py-2 bg-gray-900 text-gray-100 flex justify-between items-center`}
+      >
+        <div>Developer Toolbar</div>
         {hosts && isConnected ? (
           <div>
-            <button onClick={() => setIsOpen((open) => !open)}>Host</button>
+            <button
+              className={tw`px-4 py-2`}
+              onClick={() => setIsOpen((open) => !open)}
+            >
+              Hosts
+            </button>
 
-            <div className={isOpen ? 'menu visible' : 'menu'} role="menu">
+            <div
+              className={tw`bg-white text-gray-800 mt-4 px-4 py-3 mx-auto border-1 rounded-md shadow-sm absolute right-0 transform transition-all ${
+                isOpen ? '-translate-y-1.5' : 'opacity-0 invisible'
+              }`}
+              role="menu"
+            >
               {hosts.production ? (
                 <div>
-                  <p className="section_heading"> Production </p>
-                  <ul className="section_list">
+                  <p className={tw`uppercase opacity-60 text-sm mb-0`}>
+                    Production
+                  </p>
+                  <ul className={tw`p-0 mb-2`}>
                     {hosts.production.map((host) => (
                       <HostItem
                         key={host}
@@ -143,8 +165,10 @@ function Toolbar({hosts}: Props) {
 
               {hosts.staging ? (
                 <div>
-                  <p className="section_heading"> Staging </p>
-                  <ul className="section_list">
+                  <p className={tw`uppercase opacity-60 text-sm mb-0`}>
+                    Staging
+                  </p>
+                  <ul className={tw`p-0 mb-2`}>
                     {hosts.staging.map((host) => (
                       <HostItem
                         key={host}
@@ -160,8 +184,10 @@ function Toolbar({hosts}: Props) {
 
               {hosts.development ? (
                 <div>
-                  <p className="section_heading"> Development </p>
-                  <ul className="section_list">
+                  <p className={tw`uppercase opacity-60 text-sm mb-0`}>
+                    Development
+                  </p>
+                  <ul className={tw`p-0 mb-2`}>
                     {hosts.development.map((host) => (
                       <HostItem
                         key={host}
