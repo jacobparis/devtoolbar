@@ -16,24 +16,28 @@ const queryClient = new QueryClient()
 function HostItem({host, setHost, getHost, optional = false}) {
   const current = window.location.origin === host
 
-  const {isLoading, data} = useQuery(['host', host], () => getHost(host))
-
-  const checked = data === 'true'
+  const {isLoading, data: checked} = useQuery(['host', host], () =>
+    getHost(host),
+  )
 
   return (
     <li className={`hostItem ${current ? 'current' : ''}`}>
       <a href={host}>{host}</a>
       {optional ? (
-        <Switch
-          checked={checked}
-          onChange={(value) => {
-            setHost(host, value)
-            queryClient.invalidateQueries(['host', host])
-          }}
-          height={20}
-          width={40}
-          aria-label="Show toolbar on host"
-        />
+        isLoading ? (
+          <i className="spinner" />
+        ) : (
+          <Switch
+            checked={checked === 'true'}
+            onChange={(value) => {
+              setHost(host, value)
+              queryClient.invalidateQueries(['host', host])
+            }}
+            height={20}
+            width={40}
+            aria-label="Show toolbar on host"
+          />
+        )
       ) : null}
     </li>
   )

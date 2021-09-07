@@ -66,3 +66,25 @@
 .hostItem:hover {
   background-color: #f0f0f5;
 }
+
+.spinner {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  border: 3px solid rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+  border-top-color: #333;
+  animation: spin 1s ease-in-out infinite;
+  -webkit-animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes spin {
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
