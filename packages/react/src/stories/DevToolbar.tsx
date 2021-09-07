@@ -82,12 +82,12 @@ function Toolbar({hosts}: Props) {
   }, [storage])
 
   const {data: enabledValue} = useQuery(
-    ['host', window?.location.origin],
+    ['host', window ? window.location.origin : null],
     () => {
-      if (window?.location) {
+      if (window && window.location) {
         if (window.location.hostname === 'localhost') return 'true'
 
-        return getHost(window?.location.origin)
+        return getHost(window.location.origin)
       }
     },
   )
