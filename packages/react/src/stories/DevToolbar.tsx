@@ -49,7 +49,14 @@ type Props = {
   }
 }
 
-export function DevToolbar({hosts}: Props) {
+export function DevToolbar(props: Props) {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <Toolbar {...props} />
+    </QueryClientProvider>
+  )
+}
+function Toolbar({hosts}: Props) {
   const [isOpen, setIsOpen] = React.useState(false)
   const storage = React.useRef(null)
   if (storage.current === null) {
@@ -74,6 +81,17 @@ export function DevToolbar({hosts}: Props) {
     }
   }, [storage])
 
+  const {data: enabledValue} = useQuery(
+    ['host', window?.location.origin],
+    () => {
+      if (window?.location) {
+        if (window.location.hostname === 'localhost') return 'true'
+
+        return getHost(window?.location.origin)
+      }
+    },
+  )
+
   if (typeof window === 'undefined') {
     console.error('Developer Toolbar should not run on the server.')
 
@@ -96,7 +114,7 @@ export function DevToolbar({hosts}: Props) {
 
   const isLocalhost = window.location.hostname === 'localhost'
 
-  const shouldDisplay = isLocalhost
+  const shouldDisplay = isLocalhost || enabledValue === 'true'
   return shouldDisplay ? (
     <QueryClientProvider client={queryClient}>
       <div className="toolbar">
