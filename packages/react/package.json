@@ -30,6 +30,8 @@
   },
   "homepage": "https://github.com/JacobParis/devtoolbar#readme",
   "dependencies": {
+    "cross-storage": "^1.0.0",
+    "react-query": "^3.21.1",
     "react-switch": "^6.0.0"
   },
   "peerDependencies": {
