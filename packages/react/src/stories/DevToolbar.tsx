@@ -114,7 +114,7 @@ function Toolbar({hosts}: Props) {
 
   const isLocalhost = window.location.hostname === 'localhost'
 
-  const shouldDisplay = isLocalhost || enabledValue === 'true'
+  const shouldDisplay = enabledValue === 'true'
   return shouldDisplay ? (
     <QueryClientProvider client={queryClient}>
       <div className="toolbar">
