@@ -10,7 +10,7 @@
     "lint:fix": "yarn lint --fix",
     "verify": "npm run prettier && npm run lint",
     "verify:fix": "yarn prettier:fix && yarn lint:fix",
-    "build": "npm i && npx esbuild src/index.tsx --define:process.env.NODE_ENV=\\\"production\\\" --bundle --platform=node --outfile=lib/index.js --external:react --external:react-dom",
+    "build": "npm i && npx esbuild src/index.tsx --define:process.env.NODE_ENV=\\\"production\\\" --bundle --outfile=lib/index.js --external:react --external:react-dom",
     "postbuild": "npx tsc --build",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
@@ -19,6 +19,7 @@
     "main": "lib/index.js",
     "typings": "lib/index.d.ts"
   },
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/JacobParis/devtoolbar.git"
