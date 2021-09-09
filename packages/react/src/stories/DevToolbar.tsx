@@ -1,6 +1,5 @@
 import * as React from 'react'
 
-import {CrossStorageClient} from 'cross-storage'
 import {
   QueryClient,
   QueryClientProvider,
@@ -9,6 +8,8 @@ import {
 // A react component in typescript named HostItem
 import Switch from 'react-switch'
 import {tw} from 'twind'
+
+import CrossStorageClient from '../cross-storage-client'
 
 const queryClient = new QueryClient()
 
