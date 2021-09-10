@@ -12,6 +12,23 @@ import {tw} from 'twind'
 
 const queryClient = new QueryClient()
 
+export function Item({button = false, active = false, ...props}) {
+  return button ? (
+    <button
+      className={tw`list-none px-4 py-2 ${
+        active ? 'bg-gray-200' : ''
+      } rounded flex justify-between items-center hover:bg-gray-100`}
+      {...props}
+    />
+  ) : (
+    <div
+      className={tw`list-none px-4 py-2 ${
+        active ? 'bg-gray-200' : ''
+      } rounded flex justify-between items-center hover:bg-gray-100`}
+      {...props}
+    />
+  )
+}
 function HostItem({host, setHost, getHost, optional = false}) {
   const current = window.location.origin === host
 
@@ -55,6 +72,7 @@ type Props = {
   hosts: {
     [key: string]: string[]
   }
+  children: React.ReactNode
 }
 
 export function DevToolbar(props: Props) {
@@ -64,8 +82,23 @@ export function DevToolbar(props: Props) {
     </QueryClientProvider>
   )
 }
-function Toolbar({hosts}: Props) {
-  const [isOpen, setIsOpen] = React.useState(false)
+
+export function Button({name, active = false, ...props}) {
+  return (
+    <div>
+      <button
+        className={tw`py-2 px-4 ${
+          active ? 'bg-gray-500' : ''
+        } hover:bg-gray-700 rounded-md`}
+        {...props}
+      >
+        {name}
+      </button>
+    </div>
+  )
+}
+
+function Toolbar({hosts, children}: Props) {
   const storage = React.useRef(null)
   if (storage.current === null) {
     storage.current = new CrossStorageClient(
@@ -129,94 +162,106 @@ function Toolbar({hosts}: Props) {
         className={tw`font-sans px-4 py-2 bg-gray-900 text-gray-100 flex justify-between items-center`}
       >
         {hosts && isConnected ? (
-          <div>
-            <button
-              className={tw`px-4 py-2 hover:bg-gray-700 rounded-md`}
-              onClick={() => setIsOpen((open) => !open)}
-            >
-              <span>{window.location.origin}</span>
-              <svg
-                style={{display: 'inline'}}
-                className="w-4 h-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M19 9l-7 7-7-7"
-                />
-              </svg>
-            </button>
+          <Dropdown name={window.location.origin}>
+            {hosts.production ? (
+              <div>
+                <p className={tw`uppercase opacity-60 text-sm mb-0`}>
+                  Production
+                </p>
+                <ul className={tw`p-0 mb-2`}>
+                  {hosts.production.map((host) => (
+                    <HostItem
+                      key={host}
+                      host={host}
+                      optional
+                      setHost={setHost}
+                      getHost={getHost}
+                    />
+                  ))}
+                </ul>
+              </div>
+            ) : null}
 
-            <div
-              className={tw`bg-white text-gray-800 mt-4 px-4 py-3 mx-auto border-1 rounded-md shadow-sm absolute left-0 transform transition-all ${
-                isOpen ? '-translate-y-1.5' : 'opacity-0 invisible'
-              }`}
-              role="menu"
-            >
-              {hosts.production ? (
-                <div>
-                  <p className={tw`uppercase opacity-60 text-sm mb-0`}>
-                    Production
-                  </p>
-                  <ul className={tw`p-0 mb-2`}>
-                    {hosts.production.map((host) => (
-                      <HostItem
-                        key={host}
-                        host={host}
-                        optional
-                        setHost={setHost}
-                        getHost={getHost}
-                      />
-                    ))}
-                  </ul>
-                </div>
-              ) : null}
+            {hosts.staging ? (
+              <div>
+                <p className={tw`uppercase opacity-60 text-sm mb-0`}>Staging</p>
+                <ul className={tw`p-0 mb-2`}>
+                  {hosts.staging.map((host) => (
+                    <HostItem
+                      key={host}
+                      host={host}
+                      optional
+                      setHost={setHost}
+                      getHost={getHost}
+                    />
+                  ))}
+                </ul>
+              </div>
+            ) : null}
 
-              {hosts.staging ? (
-                <div>
-                  <p className={tw`uppercase opacity-60 text-sm mb-0`}>
-                    Staging
-                  </p>
-                  <ul className={tw`p-0 mb-2`}>
-                    {hosts.staging.map((host) => (
-                      <HostItem
-                        key={host}
-                        host={host}
-                        optional
-                        setHost={setHost}
-                        getHost={getHost}
-                      />
-                    ))}
-                  </ul>
-                </div>
-              ) : null}
-
-              {hosts.development ? (
-                <div>
-                  <p className={tw`uppercase opacity-60 text-sm mb-0`}>
-                    Development
-                  </p>
-                  <ul className={tw`p-0 mb-2`}>
-                    {hosts.development.map((host) => (
-                      <HostItem
-                        key={host}
-                        host={host}
-                        setHost={setHost}
-                        getHost={getHost}
-                      />
-                    ))}
-                  </ul>
-                </div>
-              ) : null}
-            </div>
-          </div>
+            {hosts.development ? (
+              <div>
+                <p className={tw`uppercase opacity-60 text-sm mb-0`}>
+                  Development
+                </p>
+                <ul className={tw`p-0 mb-2`}>
+                  {hosts.development.map((host) => (
+                    <HostItem
+                      key={host}
+                      host={host}
+                      setHost={setHost}
+                      getHost={getHost}
+                    />
+                  ))}
+                </ul>
+              </div>
+            ) : null}
+          </Dropdown>
         ) : null}
+
+        <div className={tw`flex flex-grow justify-end`}>{children}</div>
       </div>
     </QueryClientProvider>
   ) : null
+}
+
+export function Dropdown({children, right = false, name}) {
+  const [isOpen, setIsOpen] = React.useState(false)
+
+  return (
+    <div>
+      <button
+        className={tw`px-4 py-2 hover:bg-gray-700 rounded-md`}
+        onClick={() => setIsOpen((open) => !open)}
+      >
+        <span>{name}</span>
+        <svg
+          style={{display: 'inline'}}
+          className="w-4 h-4"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M19 9l-7 7-7-7"
+          />
+        </svg>
+      </button>
+
+      <div
+        className={tw`bg-white text-gray-800 mt-4 px-4 py-3 mx-auto border-1 rounded-md shadow-sm absolute ${
+          right ? 'right-0' : 'left-0'
+        } transform transition-all ${
+          isOpen ? '-translate-y-1.5' : 'opacity-0 invisible'
+        }`}
+        role="menu"
+      >
+        {children}
+      </div>
+    </div>
+  )
 }
