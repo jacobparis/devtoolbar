@@ -4,5 +4,6 @@
   "compilerOptions": {
     "outDir": "./dist" // Your outDir
   },
+  "files": ["./shims-vue.d.ts"],
   "include": ["./src", "./src/**/*.vue"]
 }
