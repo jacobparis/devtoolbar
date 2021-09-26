@@ -1,6 +1,6 @@
 {
   "name": "devtoolbar-vue",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A toolbar to enhance developer experience directly in your apps",
   "main": "lib/index.js",
   "scripts": {
