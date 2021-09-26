@@ -2,9 +2,15 @@ const ESBuild = require('esbuild')
 const vue = require('esbuild-vue')
 
 ESBuild.build({
-  entryPoints: ['./src/index.tsx'],
+  entryPoints: [
+    './src/stories/DevToolbar.vue',
+    './src/stories/Dropdown.vue',
+    './src/stories/HostItem.vue',
+    './src/stories/Item.vue',
+    './src/stories/Button.vue',
+  ],
   bundle: true,
-  outfile: 'lib/index.js',
+  outdir: 'lib',
   plugins: [vue()],
   define: {
     'process.env.NODE_ENV': JSON.stringify('production'),

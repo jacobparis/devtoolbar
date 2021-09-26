@@ -2,7 +2,7 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "outDir": "./dist" // Your outDir
+    "outDir": "./lib" // Your outDir
   },
   "files": ["./shims-vue.d.ts"],
   "include": ["./src", "./src/**/*.vue"]
