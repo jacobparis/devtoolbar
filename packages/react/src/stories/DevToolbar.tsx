@@ -10,63 +10,9 @@ import {
 import Switch from 'react-switch'
 import {tw} from 'twind'
 
+import {Dropdown} from './Dropdown'
+
 const queryClient = new QueryClient()
-
-export function Item({button = false, active = false, ...props}) {
-  return button ? (
-    <button
-      className={tw`list-none px-4 py-2 ${
-        active ? 'bg-gray-200' : ''
-      } rounded flex justify-between items-center hover:bg-gray-100`}
-      {...props}
-    />
-  ) : (
-    <div
-      className={tw`list-none px-4 py-2 ${
-        active ? 'bg-gray-200' : ''
-      } rounded flex justify-between items-center hover:bg-gray-100`}
-      {...props}
-    />
-  )
-}
-function HostItem({host, setHost, getHost, optional = false}) {
-  const current = window.location.origin === host
-
-  const {isLoading, data: checked} = useQuery(['host', host], () =>
-    getHost(host),
-  )
-
-  return (
-    <li
-      className={tw`list-none px-4 py-2 rounded flex justify-between items-center ${
-        current ? 'bg-yellow-100' : 'hover:bg-gray-100'
-      }`}
-    >
-      <a className={tw`pr-8 text-blue-600 hover:underline`} href={host}>
-        {host}
-      </a>
-      {optional ? (
-        isLoading ? (
-          <i
-            style={{borderTopColor: '#333'}}
-            className={tw`inline-block animate-spin w-4 h-4 border-4 border-black border-opacity-30 rounded-full `}
-          />
-        ) : (
-          <Switch
-            checked={checked === 'true'}
-            onChange={(value) => {
-              setHost(host, value)
-              queryClient.invalidateQueries(['host', host])
-            }}
-            height={20}
-            width={40}
-            aria-label="Show toolbar on host"
-          />
-        )
-      ) : null}
-    </li>
-  )
-}
 
 type Props = {
   hosts: {
@@ -80,21 +26,6 @@ export function DevToolbar(props: Props) {
     <QueryClientProvider client={queryClient}>
       <Toolbar {...props} />
     </QueryClientProvider>
-  )
-}
-
-export function Button({name, active = false, ...props}) {
-  return (
-    <div>
-      <button
-        className={tw`py-2 px-4 ${
-          active ? 'bg-gray-500' : ''
-        } hover:bg-gray-700 rounded-md`}
-        {...props}
-      >
-        {name}
-      </button>
-    </div>
   )
 }
 
@@ -132,12 +63,6 @@ function Toolbar({hosts, children}: Props) {
       }
     },
   )
-
-  if (typeof window === 'undefined') {
-    console.error('Developer Toolbar should not run on the server.')
-
-    return null
-  }
 
   function setHost(host: string, enabled: boolean) {
     if (storage.current) {
@@ -225,43 +150,41 @@ function Toolbar({hosts, children}: Props) {
   ) : null
 }
 
-export function Dropdown({children, right = false, name}) {
-  const [isOpen, setIsOpen] = React.useState(false)
+function HostItem({host, setHost, getHost, optional = false}) {
+  const current = window.location.origin === host
+
+  const {isLoading, data: checked} = useQuery(['host', host], () =>
+    getHost(host),
+  )
 
   return (
-    <div>
-      <button
-        className={tw`px-4 py-2 hover:bg-gray-700 rounded-md`}
-        onClick={() => setIsOpen((open) => !open)}
-      >
-        <span>{name}</span>
-        <svg
-          style={{display: 'inline'}}
-          className="w-4 h-4"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="M19 9l-7 7-7-7"
+    <li
+      className={tw`list-none px-4 py-2 rounded flex justify-between items-center ${
+        current ? 'bg-yellow-100' : 'hover:bg-gray-100'
+      }`}
+    >
+      <a className={tw`pr-8 text-blue-600 hover:underline`} href={host}>
+        {host}
+      </a>
+      {optional ? (
+        isLoading ? (
+          <i
+            style={{borderTopColor: '#333'}}
+            className={tw`inline-block animate-spin w-4 h-4 border-4 border-black border-opacity-30 rounded-full `}
           />
-        </svg>
-      </button>
-
-      <div
-        className={tw`bg-white text-gray-800 mt-4 px-4 py-3 mx-auto border-1 rounded-md shadow-sm absolute ${
-          right ? 'right-0' : 'left-0'
-        } transform transition-all ${
-          isOpen ? '-translate-y-1.5' : 'opacity-0 invisible'
-        }`}
-        role="menu"
-      >
-        {children}
-      </div>
-    </div>
+        ) : (
+          <Switch
+            checked={checked === 'true'}
+            onChange={(value) => {
+              setHost(host, value)
+              queryClient.invalidateQueries(['host', host])
+            }}
+            height={20}
+            width={40}
+            aria-label="Show toolbar on host"
+          />
+        )
+      ) : null}
+    </li>
   )
 }

@@ -12,8 +12,8 @@ module.exports = {
     project: './tsconfig.json',
   },
 
-  extends: ['react-app', 'plugin:prettier/recommended'],
-  plugins: ['react', '@typescript-eslint'],
+  extends: ['vue', 'plugin:prettier/recommended'],
+  plugins: ['vue', '@typescript-eslint'],
   rules: {
     '@typescript-eslint/no-unused-vars': 'off',
   },

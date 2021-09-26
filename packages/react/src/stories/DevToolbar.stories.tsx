@@ -5,19 +5,14 @@ import {
   ComponentStory,
 } from '@storybook/react'
 
-import {Dropdown} from '../'
-import {
-  Button,
-  DevToolbar,
-  Item,
-} from './DevToolbar'
+import {Button} from './Button'
+import {DevToolbar} from './DevToolbar'
+import {Dropdown} from './Dropdown'
+import {Item} from './Item'
 
 export default {
   title: 'DevToolbar',
   component: DevToolbar,
-  argTypes: {
-    backgroundColor: {control: 'color'},
-  },
 } as ComponentMeta<typeof DevToolbar>
 
 const Template: ComponentStory<typeof DevToolbar> = (args) => (
