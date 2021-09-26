@@ -1,6 +1,6 @@
 {
   "name": "devtoolbar-react",
-  "version": "1.0.43",
+  "version": "1.0.44",
   "description": "A toolbar to enhance developer experience directly in your apps",
   "main": "lib/index.js",
   "scripts": {
