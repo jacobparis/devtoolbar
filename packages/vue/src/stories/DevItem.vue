@@ -33,10 +33,6 @@ export default {
   name: 'dev-item',
 
   props: {
-    name: {
-      type: String,
-      required: true,
-    },
     active: {
       type: Boolean,
       default: false,
