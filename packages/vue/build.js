@@ -2,6 +2,7 @@ const ESBuild = require('esbuild')
 const vue = require('esbuild-vue')
 
 ESBuild.build({
+  format: 'esm',
   entryPoints: [
     './src/stories/DevToolbar.vue',
     './src/stories/Dropdown.vue',
