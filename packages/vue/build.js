@@ -3,15 +3,10 @@ const vue = require('esbuild-vue')
 
 ESBuild.build({
   format: 'esm',
-  entryPoints: [
-    './src/stories/DevToolbar.vue',
-    './src/stories/Dropdown.vue',
-    './src/stories/HostItem.vue',
-    './src/stories/Item.vue',
-    './src/stories/Button.vue',
-  ],
+  external: ['@vue/composition-api'],
+  entryPoints: ['./src/stories'],
   bundle: true,
-  outdir: 'lib',
+  outfile: 'lib/index.js',
   plugins: [vue()],
   define: {
     'process.env.NODE_ENV': JSON.stringify('production'),

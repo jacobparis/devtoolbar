@@ -23,6 +23,7 @@
     </button>
 
     <div
+      style="z-index: 1"
       :class="
         tw([
           `bg-white text-gray-800 mt-4 px-4 py-3 mx-auto border-1 rounded-md shadow-sm absolute ${
@@ -43,7 +44,7 @@
 import {tw} from 'twind'
 
 export default {
-  name: 'dev-toolbar',
+  name: 'dev-dropdown',
 
   props: {
     hosts: {

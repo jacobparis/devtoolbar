@@ -15,7 +15,7 @@
 import {tw} from 'twind'
 
 export default {
-  name: 'dev-toolbar',
+  name: 'dev-button',
 
   props: {
     name: {

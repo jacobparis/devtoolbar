@@ -30,7 +30,7 @@
 import {tw} from 'twind'
 
 export default {
-  name: 'item',
+  name: 'dev-item',
 
   props: {
     name: {

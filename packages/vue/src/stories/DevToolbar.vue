@@ -9,8 +9,8 @@ import VueCompositionAPI, {
 import {CrossStorageClient} from 'cross-storage'
 
 import {tw} from 'twind'
-import Dropdown from './Dropdown.vue'
-import HostItem from './HostItem.vue'
+import Dropdown from './DevDropdown.vue'
+import HostItem from './DevHostItem.vue'
 import {useQuery, useQueryProvider} from 'vue-query'
 
 export default defineComponent({
@@ -98,7 +98,7 @@ export default defineComponent({
   <div
     :class="
       tw([
-        'font-sans px-4 py-2 bg-gray-900 text-gray-100 flex justify-between items-center',
+        'relative font-sans px-4 py-2 bg-gray-900 text-gray-100 flex justify-between items-center',
       ])
     "
   >

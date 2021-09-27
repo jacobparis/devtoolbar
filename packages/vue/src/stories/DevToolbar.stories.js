@@ -1,7 +1,7 @@
-import Button from './Button.vue'
+import DevButton from './DevButton.vue'
+import DevDropdown from './DevDropdown.vue'
+import DevItem from './DevItem.vue'
 import DevToolbar from './DevToolbar.vue'
-import Dropdown from './Dropdown.vue'
-import Item from './Item.vue'
 
 export default {
   title: 'DevToolbar',
@@ -29,7 +29,7 @@ WithHosts.args = {
 export const WithButton = (args) => {
   return {
     components: {
-      Button,
+      DevButton,
       DevToolbar,
     },
 
@@ -49,8 +49,8 @@ export const WithButton = (args) => {
 
     template: `
       <dev-toolbar>
-        <Button v-if="isDesignMode" name="🎨" active @click="setDesignMode(false)" />
-        <Button v-else name="🎨" @click="setDesignMode(true)" />
+        <DevButton v-if="isDesignMode" name="🎨" active @click="setDesignMode(false)" />
+        <DevButton v-else name="🎨" @click="setDesignMode(true)" />
       </dev-toolbar>
     `,
   }
@@ -59,8 +59,8 @@ export const WithButton = (args) => {
 export const WithDropdown = (args) => {
   return {
     components: {
-      Dropdown,
-      Item,
+      DevDropdown,
+      DevItem,
       DevToolbar,
     },
 
@@ -81,12 +81,12 @@ export const WithDropdown = (args) => {
     template: `
       <dev-toolbar>
         <dropdown name="⚡️ Triggers" right>
-          <Item button v-if="isDesignMode" name="🎨" active @click="setDesignMode(false)">
+          <DevItem button v-if="isDesignMode" name="🎨" active @click="setDesignMode(false)">
             Disable design mode
-          </Item>
-          <Item button v-else name="🎨" @click="setDesignMode(true)">
+          </DevItem>
+          <DevItem button v-else name="🎨" @click="setDesignMode(true)">
             Enable design mode
-          </Item>
+          </DevItem>
         </dropdown>
       </dev-toolbar>
     `,

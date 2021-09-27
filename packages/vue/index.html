@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Clash</title>
+    <script src="https://unpkg.com/vue@2"></script>
+
+    <!-- the star of the show - the Vue library! -->
+  </head>
+  <body>
+    <div id="app"></div>
+    <script src="https://cdn.jsdelivr.net/npm/vue2-sfc-loader/dist/vue2-sfc-loader.js"></script>
+    <script type="module">
+      const options = {
+        moduleCache: {
+          vue: Vue,
+        },
+        async getFile(url) {
+          const res = await fetch(url)
+          if (!res.ok)
+            throw Object.assign(new Error(res.statusText + ' ' + url), {res})
+          return {
+            getContentData: (asBinary) =>
+              asBinary ? res.arrayBuffer() : res.text(),
+          }
+        },
+        addStyle(textContent) {
+          const style = Object.assign(document.createElement('style'), {
+            textContent,
+          })
+          const ref = document.head.getElementsByTagName('style')[0] || null
+          document.head.insertBefore(style, ref)
+        },
+      }
+
+      // const {loadModule} = window['vue2-sfc-loader']
+
+      // const DevToolbar = Vue.defineAsyncComponent(() =>
+      //       loadModule('./src/stories/DevToolbar.vue', options),
+      //     )
+
+      import DevToolbar from './lib/DevToolbar.js'
+
+      new Vue({
+        el: '#app',
+        components: {
+          DevToolbar,
+        },
+        template: `<dev-toolbar
+        :hosts="{
+        production: ['https://www.threeq.app'],
+        staging: ['https://blag.vercel.com'],
+        development: ['http://localhost:3000'],
+      }"
+      />`,
+      })
+    </script>
+  </body>
+</html>

@@ -99,7 +99,7 @@ import {defineComponent, ref, computed} from '@vue/composition-api'
 import {useQuery, useQueryClient} from 'vue-query'
 
 export default defineComponent({
-  name: 'dev-toolbar',
+  name: 'dev-host-item',
   components: {
     TToggle,
   },
