@@ -1,6 +1,6 @@
 {
   "name": "devtoolbar-vue",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "A toolbar to enhance developer experience directly in your apps",
   "main": "lib/index.js",
   "scripts": {
@@ -35,6 +35,7 @@
     "@storybook/addon-essentials": "^6.3.8",
     "@storybook/addon-links": "^6.3.8",
     "@storybook/vue": "^6.3.8",
+    "@vue/composition-api": "^1.2.2",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.2.2",
     "esbuild": "^0.13.2",
@@ -46,8 +47,7 @@
     "vite": "^2.5.10",
     "vite-plugin-vue2": "^1.8.2",
     "vue-demi": "^0.11.4",
-    "vue-loader": "^15.9.8",
-    "@vue/composition-api": "^1.2.2"
+    "vue-loader": "^15.9.8"
   },
   "peerDependencies": {
     "@vue/composition-api": "^1.2.2",
