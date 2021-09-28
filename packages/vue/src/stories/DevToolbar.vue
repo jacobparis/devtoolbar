@@ -1,17 +1,15 @@
 <script>
-import VueCompositionAPI, {
-  defineComponent,
-  computed,
-  ref,
-  watchEffect,
-  toRefs,
-} from '@vue/composition-api'
+import {defineComponent, computed, ref, watchEffect} from '@vue/composition-api'
 import {CrossStorageClient} from 'cross-storage'
 
-import {tw} from 'twind'
+import {setup, tw} from 'twind'
 import Dropdown from './DevDropdown.vue'
 import HostItem from './DevHostItem.vue'
 import {useQuery, useQueryProvider} from 'vue-query'
+
+setup({
+  hash: true,
+})
 
 export default defineComponent({
   name: 'dev-toolbar',
